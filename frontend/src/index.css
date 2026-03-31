@@ -1,0 +1,465 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-tertiary: #21262d;
+  --border-color: #30363d;
+  --text-primary: #f0f6fc;
+  --text-secondary: #8b949e;
+  --text-tertiary: #6e7681;
+  --accent-green: #3fb950;
+  --accent-red: #f85149;
+  --accent-blue: #58a6ff;
+  --accent-purple: #a371f7;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* Layout utilities */
+.pm-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Card styles - Polymarket style */
+.pm-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.pm-card:hover {
+  border-color: #484f58;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Button styles */
+.pm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.pm-btn-primary {
+  background: var(--accent-green);
+  color: #000;
+}
+
+.pm-btn-primary:hover {
+  background: #4bc95a;
+  transform: translateY(-1px);
+}
+
+.pm-btn-secondary {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.pm-btn-secondary:hover {
+  background: var(--border-color);
+}
+
+/* Input styles */
+.pm-input {
+  width: 100%;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--text-primary);
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.pm-input:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+}
+
+.pm-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* Navigation */
+.pm-nav {
+  background: rgba(13, 17, 23, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.pm-nav-link {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.pm-nav-link:hover {
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+}
+
+.pm-nav-link.active {
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+}
+
+/* Badge styles */
+.pm-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 20px;
+}
+
+.pm-badge-green {
+  background: rgba(63, 185, 80, 0.15);
+  color: var(--accent-green);
+}
+
+.pm-badge-red {
+  background: rgba(248, 81, 73, 0.15);
+  color: var(--accent-red);
+}
+
+.pm-badge-blue {
+  background: rgba(88, 166, 255, 0.15);
+  color: var(--accent-blue);
+}
+
+/* Progress bar */
+.pm-progress {
+  height: 6px;
+  background: var(--bg-tertiary);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.pm-progress-bar {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+/* Tab styles */
+.pm-tab {
+  padding: 12px 20px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.pm-tab:hover {
+  color: var(--text-primary);
+}
+
+.pm-tab.active {
+  color: var(--accent-blue);
+  border-bottom-color: var(--accent-blue);
+}
+
+/* Stats */
+.pm-stat {
+  padding: 20px;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.pm-stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.pm-stat-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pm-stat-change {
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.pm-stat-change.positive {
+  color: var(--accent-green);
+}
+
+.pm-stat-change.negative {
+  color: var(--accent-red);
+}
+
+/* Dividers */
+.pm-divider {
+  height: 1px;
+  background: var(--border-color);
+  margin: 16px 0;
+}
+
+/* Text colors */
+.pm-text-primary {
+  color: var(--text-primary);
+}
+
+.pm-text-secondary {
+  color: var(--text-secondary);
+}
+
+.pm-text-tertiary {
+  color: var(--text-tertiary);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+/* Table styles */
+.pm-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pm-table th {
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.pm-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 14px;
+}
+
+.pm-table tr:hover td {
+  background: var(--bg-tertiary);
+}
+
+/* Chart container */
+.pm-chart-container {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+/* Sidebar */
+.pm-sidebar {
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
+  min-height: calc(100vh - 64px);
+}
+
+.pm-sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.pm-sidebar-link:hover {
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+}
+
+.pm-sidebar-link.active {
+  color: var(--accent-blue);
+  background: var(--bg-tertiary);
+  border-right: 2px solid var(--accent-blue);
+}
+
+/* Market card specific */
+.pm-market-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.pm-market-card:hover {
+  border-color: #484f58;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.pm-market-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.pm-market-outcome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.pm-market-outcome-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.pm-market-outcome-price {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.pm-market-outcome-price.yes {
+  color: var(--accent-green);
+}
+
+.pm-market-outcome-price.no {
+  color: var(--accent-red);
+}
+
+/* Trade panel */
+.pm-trade-panel {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.pm-trade-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.pm-trade-tab {
+  flex: 1;
+  padding: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pm-trade-tab.yes {
+  background: rgba(63, 185, 80, 0.2);
+  color: var(--accent-green);
+}
+
+.pm-trade-tab.yes:hover,
+.pm-trade-tab.yes.active {
+  background: var(--accent-green);
+  color: #000;
+}
+
+.pm-trade-tab.no {
+  background: rgba(248, 81, 73, 0.2);
+  color: var(--accent-red);
+}
+
+.pm-trade-tab.no:hover,
+.pm-trade-tab.no.active {
+  background: var(--accent-red);
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .pm-container {
+    padding: 0 16px;
+  }
+
+  .pm-stat-value {
+    font-size: 24px;
+  }
+}

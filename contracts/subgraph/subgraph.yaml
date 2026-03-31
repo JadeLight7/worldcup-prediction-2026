@@ -1,0 +1,97 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: EnhancedPredictionMarketFactory
+    network: hardhat
+    source:
+      address: "0x..."  # Deployed factory address
+      abi: EnhancedPredictionMarketFactory
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Market
+        - User
+      abis:
+        - name: EnhancedPredictionMarketFactory
+          file: ./abis/EnhancedPredictionMarketFactory.json
+        - name: EnhancedPredictionMarket
+          file: ./abis/EnhancedPredictionMarket.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: MarketCreated(address,address,string,bytes32,uint256,uint256)
+          handler: handleMarketCreated
+        - event: FeeConfigUpdated(uint256,uint256,uint256)
+          handler: handleFeeConfigUpdated
+      file: ./src/factoryMapping.ts
+  - kind: ethereum
+    name: EnhancedPredictionMarket
+    network: hardhat
+    source:
+      abi: EnhancedPredictionMarket
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Market
+        - Order
+        - Trade
+        - PricePoint
+        - LiquidityPosition
+        - UserPosition
+      abis:
+        - name: EnhancedPredictionMarket
+          file: ./abis/EnhancedPredictionMarket.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: OrderPlaced(uint256,address,uint8,uint256,uint256,uint256,uint256)
+          handler: handleOrderPlaced
+        - event: OrderFilled(uint256,address,address,uint256,uint256,uint256)
+          handler: handleOrderFilled
+        - event: OrderCancelled(uint256,address)
+          handler: handleOrderCancelled
+        - event: OrderExpired(uint256)
+          handler: handleOrderExpired
+        - event: Trade(address,address,uint256,uint256,uint256,uint256)
+          handler: handleTrade
+        - event: MarketResolved(uint256,address)
+          handler: handleMarketResolved
+        - event: PartialResolution(uint256,bool)
+          handler: handlePartialResolution
+        - event: LiquidityAdded(address,uint256,uint256)
+          handler: handleLiquidityAdded
+        - event: LiquidityRemoved(address,uint256,uint256)
+          handler: handleLiquidityRemoved
+        - event: RewardsClaimed(address,uint256)
+          handler: handleRewardsClaimed
+        - event: PriceUpdated(uint256,uint256,uint256,uint256)
+          handler: handlePriceUpdated
+        - event: FeeDistributed(uint256,uint256,uint256)
+          handler: handleFeeDistributed
+      file: ./src/marketMapping.ts
+templates:
+  - name: Market
+    kind: ethereum
+    network: hardhat
+    source:
+      abi: EnhancedPredictionMarket
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/marketTemplate.ts
+      entities:
+        - Market
+        - Order
+        - Trade
+      abis:
+        - name: EnhancedPredictionMarket
+          file: ./abis/EnhancedPredictionMarket.json

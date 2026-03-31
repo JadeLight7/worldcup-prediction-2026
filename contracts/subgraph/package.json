@@ -1,0 +1,22 @@
+{
+  "name": "worldcup-prediction-market-subgraph",
+  "version": "1.0.0",
+  "description": "TheGraph subgraph for 2026 World Cup Prediction Market",
+  "main": "index.js",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ worldcup-prediction-market",
+    "create-local": "graph create --node http://localhost:8020/ worldcup-prediction-market",
+    "remove-local": "graph remove --node http://localhost:8020/ worldcup-prediction-market",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 worldcup-prediction-market",
+    "test": "graph test"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.60.0",
+    "@graphprotocol/graph-ts": "0.31.0"
+  },
+  "devDependencies": {
+    "matchstick-as": "0.5.0"
+  }
+}

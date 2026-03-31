@@ -1,0 +1,60 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production builds
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Hardhat files
+cache/
+artifacts/
+typechain/
+typechain-types/
+coverage/
+coverage.json
+deployment.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+.nyc_output/
+
+# Misc
+.eslintcache
+*.tsbuildinfo
+
+# Hardhat deployment files
+contracts/deployment.json
+contracts/oracle-deployment.json
+
+# Frontend
+frontend/screenshot.png
+
+# Local dev
+*.local
+.history/

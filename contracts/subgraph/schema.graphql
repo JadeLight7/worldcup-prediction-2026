@@ -1,0 +1,203 @@
+type Market @entity {
+  id: ID!
+  address: Bytes!
+  creator: User!
+  question: String!
+  description: String!
+  outcomes: [Outcome!]!
+  outcomeCount: Int!
+  resolutionTime: BigInt!
+  fee: BigInt!
+  creationFee: BigInt!
+  oracle: Bytes!
+  isResolved: Boolean!
+  winningOutcome: Int
+  status: String!
+  conditionId: Bytes!
+
+  # Stats
+  totalVolume: BigDecimal!
+  totalLiquidity: BigDecimal!
+  totalFeesCollected: BigDecimal!
+  totalRewardsPaid: BigDecimal!
+
+  # Relationships
+  orders: [Order!]! @derivedFrom(field: "market")
+  trades: [Trade!]! @derivedFrom(field: "market")
+  priceHistory: [PricePoint!]! @derivedFrom(field: "market")
+  liquidityPositions: [LiquidityPosition!]! @derivedFrom(field: "market")
+  userPositions: [UserPosition!]! @derivedFrom(field: "market")
+
+  # Timestamps
+  createdAt: BigInt!
+  resolvedAt: BigInt
+  updatedAt: BigInt!
+}
+
+type Outcome @entity {
+  id: ID!
+  market: Market!
+  index: Int!
+  name: String!
+  currentPrice: BigDecimal!
+  totalVolume: BigDecimal!
+  totalShares: BigDecimal!
+}
+
+type User @entity {
+  id: ID!
+  address: Bytes!
+
+  # Trading stats
+  totalOrdersCreated: Int!
+  totalOrdersFilled: Int!
+  totalTrades: Int!
+  totalVolume: BigDecimal!
+  totalFeesPaid: BigDecimal!
+
+  # Winnings
+  totalWinningsClaimed: BigDecimal!
+
+  # Relationships
+  orders: [Order!]! @derivedFrom(field: "trader")
+  tradesAsBuyer: [Trade!]! @derivedFrom(field: "buyer")
+  tradesAsSeller: [Trade!]! @derivedFrom(field: "seller")
+  liquidityPositions: [LiquidityPosition!]! @derivedFrom(field: "provider")
+  userPositions: [UserPosition!]! @derivedFrom(field: "user")
+  marketsCreated: [Market!]! @derivedFrom(field: "creator")
+
+  createdAt: BigInt!
+  updatedAt: BigInt!
+}
+
+type Order @entity {
+  id: ID!
+  orderId: BigInt!
+  market: Market!
+  trader: User!
+
+  orderType: String!  # LimitBuy, LimitSell, StopLoss, TakeProfit
+  outcomeIndex: Int!
+  outcome: Outcome!
+
+  amount: BigDecimal!
+  filledAmount: BigDecimal!
+  price: BigDecimal!
+  stopPrice: BigDecimal
+
+  deadline: BigInt!
+  isActive: Boolean!
+  status: String!  # Active, Filled, Cancelled, Expired
+
+  timestamp: BigInt!
+  updatedAt: BigInt!
+
+  # Relationships
+  fills: [Trade!]! @derivedFrom(field: "order")
+}
+
+type Trade @entity {
+  id: ID!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+
+  market: Market!
+  order: Order
+
+  buyer: User!
+  seller: User!
+  outcomeIndex: Int!
+  outcome: Outcome!
+
+  amount: BigDecimal!
+  price: BigDecimal!
+  value: BigDecimal!
+  fee: BigDecimal!
+
+  timestamp: BigInt!
+  blockNumber: BigInt!
+}
+
+type PricePoint @entity {
+  id: ID!
+  market: Market!
+  outcomeIndex: Int!
+  outcome: Outcome!
+
+  timestamp: BigInt!
+  price: BigDecimal!
+  volume: BigDecimal!
+  blockNumber: BigInt!
+}
+
+type LiquidityPosition @entity {
+  id: ID!
+  provider: User!
+  market: Market!
+
+  amount: BigDecimal!
+  shares: BigDecimal!
+  rewardDebt: BigDecimal!
+
+  totalRewardsClaimed: BigDecimal!
+
+  lastUpdateTime: BigInt!
+  createdAt: BigInt!
+  updatedAt: BigInt!
+}
+
+type UserPosition @entity {
+  id: ID!
+  user: User!
+  market: Market!
+  outcomeIndex: Int!
+  outcome: Outcome!
+
+  balance: BigDecimal!
+  claimed: Boolean!
+
+  # Cost basis for PnL
+  averageBuyPrice: BigDecimal!
+  totalInvested: BigDecimal!
+
+  updatedAt: BigInt!
+}
+
+type MarketDailyStats @entity {
+  id: ID!
+  market: Market!
+  date: String!  # YYYY-MM-DD
+
+  volume: BigDecimal!
+  trades: Int!
+  fees: BigDecimal!
+
+  openPrice: BigDecimal!
+  highPrice: BigDecimal!
+  lowPrice: BigDecimal!
+  closePrice: BigDecimal!
+}
+
+type FactoryStats @entity {
+  id: ID!
+
+  totalMarkets: Int!
+  totalVolume: BigDecimal!
+  totalFeesCollected: BigDecimal!
+  totalLiquidity: BigDecimal!
+  totalRewardsPaid: BigDecimal!
+
+  updatedAt: BigInt!
+}
+
+type FeeDistribution @entity {
+  id: ID!
+  market: Market!
+  transactionHash: Bytes!
+
+  lpFee: BigDecimal!
+  protocolFee: BigDecimal!
+  oracleFee: BigDecimal!
+
+  timestamp: BigInt!
+}
