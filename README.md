@@ -145,6 +145,16 @@ npm run dev
 
 访问 http://localhost:5173 查看应用
 
+## 🔗 智能合约交互
+
+详细的合约调用指南：[`contracts/README.md`](contracts/README.md)
+
+快速查询：
+```bash
+cd contracts
+npx hardhat run scripts/call-oracle.js --network localhost
+```
+
 ## 📝 使用指南
 
 ### 创建预测市场
