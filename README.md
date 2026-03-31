@@ -237,34 +237,3 @@ npm run build
 
 **⚠️ 免责声明**: 本项目仅供学习和娱乐使用，不构成投资建议。
 
-## 🤝 贡献
-
-欢迎提交 Issue 和 Pull Request！
-
-1. Fork 本项目
-2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 创建 Pull Request
-
-请阅读 [CONTRIBUTING.md](CONTRIBUTING.md) 了解详细规范。
-
-## 📄 许可证
-
-本项目基于 [MIT](LICENSE) 许可证开源。
-
-## 🙏 致谢
-
-- [Polymarket](https://polymarket.com/) - 预测市场设计灵感
-- [Gnosis Conditional Tokens](https://github.com/gnosis/conditional-tokens-contracts) - 条件代币实现
-- [OpenZeppelin](https://openzeppelin.com/) - 安全合约库
-
-## 📞 联系方式
-
-- Twitter: [@yourhandle](https://twitter.com/yourhandle)
-- Discord: [邀请链接]
-- Email: your.email@example.com
-
----
-
-⭐ 如果这个项目对你有帮助，请给它一个 Star！
