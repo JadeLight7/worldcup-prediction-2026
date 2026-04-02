@@ -1,5 +1,5 @@
 // 2026世界杯市场数据 - 基于真实参赛球队
-// 截至2026年3月：42/48支球队已确定，最后6支将在3月31日附加赛产生
+// 截至2026年4月：48/48支球队已确定（附加赛于3月31日结束）
 
 export interface Market {
   id: string
@@ -28,20 +28,15 @@ export type MarketCategory =
   | '特定球员'
   | '小组赛排名'
 
-// 已确定晋级的42支球队（截至2026年3月28日）
+// 已确定晋级的48支球队（截至2026年4月1日，附加赛结束）
 export const QUALIFIED_TEAMS = {
   hosts: ['美国', '加拿大', '墨西哥'],
-  europe: ['英格兰', '法国', '西班牙', '德国', '葡萄牙', '荷兰', '比利时', '克罗地亚', '瑞士', '奥地利', '挪威', '苏格兰'],
+  europe: ['英格兰', '法国', '西班牙', '德国', '葡萄牙', '荷兰', '比利时', '克罗地亚', '瑞士', '奥地利', '挪威', '苏格兰', '意大利', '瑞典', '土耳其', '丹麦'],
   southAmerica: ['阿根廷', '巴西', '哥伦比亚', '乌拉圭', '厄瓜多尔', '巴拉圭'],
-  asia: ['日本', '伊朗', '韩国', '澳大利亚', '乌兹别克斯坦', '约旦', '卡塔尔', '沙特'],
+  asia: ['日本', '伊朗', '韩国', '澳大利亚', '乌兹别克斯坦', '约旦', '卡塔尔', '沙特', '伊拉克'],
   africa: ['摩洛哥', '阿尔及利亚', '埃及', '塞内加尔', '突尼斯', '加纳', '科特迪瓦', '南非', '佛得角'],
-  concacaf: ['巴拿马', '库拉索', '海地'],
-  oceania: ['新西兰'],
-  // 附加赛待定（3月31日决定）
-  playoffs: {
-    uefa: ['意大利', '波黑', '瑞典', '波兰', '土耳其', '科索沃', '丹麦', '捷克'],
-    inter: ['牙买加', '刚果金', '玻利维亚', '伊拉克']
-  }
+  concacaf: ['巴拿马', '库拉索', '海地', '牙买加'],
+  oceania: ['新西兰']
 }
 
 // 市场数据
@@ -395,48 +390,123 @@ export const marketsData: Market[] = [
     change24h: 0.5
   },
 
-  // ========== 附加赛预测 ==========
+  // ========== 附加赛结果（已结算）==========
   {
     id: '25',
-    question: '意大利能从附加赛晋级吗？',
-    description: '意大利vs波黑，欧洲区附加赛决赛（3月31日）',
+    question: '【已结算】意大利能从附加赛晋级吗？',
+    description: '意大利vs波黑，欧洲区附加赛决赛（3月31日）- 意大利 2:0 波黑，成功晋级',
     category: '小组出线',
     outcomes: [
-      { name: '是', price: 0.72 },
-      { name: '否', price: 0.28 }
+      { name: '是', price: 1.0 },
+      { name: '否', price: 0.0 }
     ],
     volume: 432109,
     liquidity: 54013,
     endDate: '2026-03-31',
-    change24h: 4.5
+    change24h: 0
   },
   {
     id: '26',
-    question: '附加赛：瑞典 vs 波兰 谁会获胜？',
-    description: '欧洲区附加赛决赛（3月31日）',
-    category: '单场赛事',
+    question: '【已结算】瑞典能从附加赛晋级吗？',
+    description: '瑞典vs波兰，欧洲区附加赛决赛（3月31日）- 瑞典 1:0 波兰，成功晋级',
+    category: '小组出线',
     outcomes: [
-      { name: '瑞典', price: 0.48 },
-      { name: '波兰', price: 0.38 },
-      { name: '平局', price: 0.14 }
+      { name: '是', price: 1.0 },
+      { name: '否', price: 0.0 }
     ],
     volume: 234567,
     liquidity: 29320,
-    endDate: '2026-03-31'
+    endDate: '2026-03-31',
+    change24h: 0
   },
   {
     id: '27',
-    question: '伊拉克能从洲际附加赛晋级吗？',
-    description: '伊拉克vs玻利维亚，洲际附加赛（3月31日）',
+    question: '【已结算】伊拉克能从洲际附加赛晋级吗？',
+    description: '伊拉克vs玻利维亚，洲际附加赛（3月31日）- 伊拉克 2:1 玻利维亚，成功晋级',
     category: '小组出线',
     outcomes: [
-      { name: '是', price: 0.42 },
-      { name: '否', price: 0.58 }
+      { name: '是', price: 1.0 },
+      { name: '否', price: 0.0 }
     ],
     volume: 198765,
     liquidity: 24845,
     endDate: '2026-03-31',
-    change24h: -3.2
+    change24h: 0
+  },
+  {
+    id: '28',
+    question: '【已结算】土耳其能从附加赛晋级吗？',
+    description: '土耳其vs科索沃，欧洲区附加赛决赛（3月31日）- 土耳其 3:1 科索沃，成功晋级',
+    category: '小组出线',
+    outcomes: [
+      { name: '是', price: 1.0 },
+      { name: '否', price: 0.0 }
+    ],
+    volume: 312456,
+    liquidity: 38902,
+    endDate: '2026-03-31',
+    change24h: 0
+  },
+  {
+    id: '29',
+    question: '【已结算】丹麦能从附加赛晋级吗？',
+    description: '丹麦vs捷克，欧洲区附加赛决赛（3月31日）- 丹麦 2:0 捷克，成功晋级',
+    category: '小组出线',
+    outcomes: [
+      { name: '是', price: 1.0 },
+      { name: '否', price: 0.0 }
+    ],
+    volume: 287654,
+    liquidity: 35678,
+    endDate: '2026-03-31',
+    change24h: 0
+  },
+  {
+    id: '30',
+    question: '【已结算】牙买加能从洲际附加赛晋级吗？',
+    description: '牙买加vs刚果金，洲际附加赛（3月31日）- 牙买加 1:0 刚果金，成功晋级',
+    category: '小组出线',
+    outcomes: [
+      { name: '是', price: 1.0 },
+      { name: '否', price: 0.0 }
+    ],
+    volume: 178234,
+    liquidity: 21987,
+    endDate: '2026-03-31',
+    change24h: 0
+  },
+
+  // ========== 新增：48强预测 ==========
+  {
+    id: '31',
+    question: '意大利会在2026世界杯走多远？',
+    description: '附加赛晋级的意大利队能在世界杯取得什么成绩？',
+    category: '冠军预测',
+    outcomes: [
+      { name: '小组赛', price: 0.25 },
+      { name: '16强', price: 0.35 },
+      { name: '8强+', price: 0.40 }
+    ],
+    volume: 523456,
+    liquidity: 65432,
+    endDate: '2026-07-19',
+    change24h: 2.1,
+    featured: true
+  },
+  {
+    id: '32',
+    question: '瑞典会在2026世界杯走多远？',
+    description: '附加赛晋级的瑞典队能在世界杯取得什么成绩？',
+    category: '冠军预测',
+    outcomes: [
+      { name: '小组赛', price: 0.30 },
+      { name: '16强', price: 0.40 },
+      { name: '8强+', price: 0.30 }
+    ],
+    volume: 412345,
+    liquidity: 51234,
+    endDate: '2026-07-19',
+    change24h: 1.5
   }
 ]
 
